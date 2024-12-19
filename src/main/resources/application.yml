@@ -6,13 +6,14 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://47.109.206.82/data_class_4?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://47.109.206.82/Library_Final_Project?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: root
       password: 20010720Lmx
 mybatis-plus:
   configuration:
     #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
     map-underscore-to-camel-case: true
+    #配置 log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 可以方便地在控制台输出 MyBatis 执行的 SQL 语句等日志信息
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
