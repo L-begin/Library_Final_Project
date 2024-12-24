@@ -1,6 +1,6 @@
 package cn.lanqiao.library_final_project.service.impl;
 
-import cn.lanqiao.library_final_project.pojo.BooksInfo;
+import cn.lanqiao.library_final_project.module.pojo.BooksInfo;
 import cn.lanqiao.library_final_project.mapper.BooksInfoMapper;
 import cn.lanqiao.library_final_project.service.IBooksInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

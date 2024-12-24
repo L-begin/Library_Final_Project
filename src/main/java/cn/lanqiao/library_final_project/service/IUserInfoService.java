@@ -1,6 +1,6 @@
 package cn.lanqiao.library_final_project.service;
 
-import cn.lanqiao.library_final_project.pojo.UserInfo;
+import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

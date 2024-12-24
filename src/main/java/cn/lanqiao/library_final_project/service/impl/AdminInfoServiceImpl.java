@@ -1,6 +1,6 @@
 package cn.lanqiao.library_final_project.service.impl;
 
-import cn.lanqiao.library_final_project.pojo.AdminInfo;
+import cn.lanqiao.library_final_project.module.pojo.AdminInfo;
 import cn.lanqiao.library_final_project.mapper.AdminInfoMapper;
 import cn.lanqiao.library_final_project.service.IAdminInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

@@ -1,4 +1,4 @@
-package cn.lanqiao.library_final_project.pojo;
+package cn.lanqiao.library_final_project.module.pojo;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;

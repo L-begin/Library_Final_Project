@@ -1,7 +1,8 @@
 package cn.lanqiao.library_final_project.mapper;
 
-import cn.lanqiao.library_final_project.pojo.BookHisInfo;
+import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zyh
  * @since 2024-12-24
  */
+@Mapper
 public interface BookHisInfoMapper extends BaseMapper<BookHisInfo> {
 
 }

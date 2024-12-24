@@ -1,4 +1,4 @@
-package cn.lanqiao.library_final_project.pojo;
+package cn.lanqiao.library_final_project.module.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -17,7 +17,6 @@ import lombok.experimental.Accessors;
  * @author zyh
  * @since 2024-12-24
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("admin_info")
@@ -30,6 +29,30 @@ public class AdminInfo implements Serializable {
 
     @TableField("username")
     private String username;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @TableField("password")
     private String password;
