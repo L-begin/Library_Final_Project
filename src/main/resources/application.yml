@@ -1,12 +1,8 @@
 server:
   port: 8080
 spring:
-  application:
-    name: BMS
   datasource:
-    druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://47.109.206.82/Library_Final_Project?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://47.109.206.82/Library_Final_Project?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&characterEncoding=utf8&characterSetResults=utf8
       username: root
       password: 20010720Lmx
 mybatis-plus:
@@ -15,6 +11,20 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     #配置 log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 可以方便地在控制台输出 MyBatis 执行的 SQL 语句等日志信息
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: cn.lanqiao.model.pojo
   global-config:
     db-config:
       id-type: none
+sky:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: lanqaio
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    user-secret-key: zyh
+    user-ttl: 7200000
+    user-token-name: authentication
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
