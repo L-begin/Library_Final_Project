@@ -1,6 +1,8 @@
 package cn.lanqiao.library_final_project.service;
 
+import cn.lanqiao.library_final_project.module.dto.typeDto;
 import cn.lanqiao.library_final_project.module.pojo.BookTypeInfo;
+import cn.lanqiao.library_final_project.result.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -19,4 +21,13 @@ public interface IBookTypeInfoService extends IService<BookTypeInfo> {
      * @return
      */
     List<BookTypeInfo> classification();
+
+
+    /***
+     * 分页查询
+     * @param typeDto
+     * @return
+     */
+
+    PageResult pagequery(typeDto typeDto);
 }

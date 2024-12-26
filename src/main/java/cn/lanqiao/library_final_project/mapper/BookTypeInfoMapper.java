@@ -1,7 +1,9 @@
 package cn.lanqiao.library_final_project.mapper;
 
+import cn.lanqiao.library_final_project.module.dto.typeDto;
 import cn.lanqiao.library_final_project.module.pojo.BookTypeInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -24,4 +26,12 @@ public interface BookTypeInfoMapper extends BaseMapper<BookTypeInfo> {
 
     @Select("select * from book_type_info")
     List<BookTypeInfo> classification();
+
+    /***
+     *分页查询
+     * @param typeDto
+     * @return
+     */
+
+    Page<BookTypeInfo> pagequery(typeDto typeDto);
 }

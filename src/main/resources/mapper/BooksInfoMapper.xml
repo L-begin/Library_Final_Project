@@ -9,10 +9,10 @@
                 and name like concat('%',#{name},'%')
             </if>
             <if test="author!=null">
-                and author = #{author}
+                and author like concat('%',#{author},'%')
             </if>
             <if test="type!=null">
-                and type = #{type}
+                and type like concat('%',#{type},'%')
             </if>
             <if test="card!=null">
                 and card = #{card}
