@@ -1,6 +1,8 @@
 package cn.lanqiao.library_final_project.service;
 
+import cn.lanqiao.library_final_project.module.dto.userDto;
 import cn.lanqiao.library_final_project.module.pojo.UserInfo;
+import cn.lanqiao.library_final_project.result.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +15,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserInfoService extends IService<UserInfo> {
 
+    /***
+     * 分页查询
+     * @param userDto
+     * @return
+     */
+    PageResult pagequery(userDto userDto);
 }
