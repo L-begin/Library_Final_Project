@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
@@ -36,10 +35,11 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtTokenAdminInterceptor)
-                .addPathPatterns("/html/admin/**") // 拦截 /html/admin/ 下的所有请求
-                .excludePathPatterns("/html/admin/login.html");
+                .addPathPatterns("/admin/**") // 拦截 /html/admin/ 下的所有请求
+                .addPathPatterns("/book/**")
+                .excludePathPatterns("/admin/login");
         registry.addInterceptor(jwtTokenUserInterceptor)
-                .addPathPatterns("/html/user/**") // 拦截 /html/user/ 下的所有请求
-                .excludePathPatterns("/html/user/login.html");
+                .addPathPatterns("/user/**") // 拦截 /html/user/ 下的所有请求
+                .excludePathPatterns("/user/login");
     }
 }

@@ -31,7 +31,7 @@ public class AdminInfoController {
     private IAdminInfoService adminInfoService;
     @Autowired
     private JwtProperties jwtProperties;
-        @PostMapping(value = "/admin/login", produces = "application/json;charset=UTF-8")
+        @PostMapping( "/admin/login")
         public Result<AdminLoginVO> login(@RequestBody AdminInfo adminInfo) {
             AdminInfo result = adminInfoService.lambdaQuery().eq(AdminInfo::getUsername, adminInfo.getUsername())
                     .eq(AdminInfo::getPassword, adminInfo.getPassword())
@@ -39,8 +39,8 @@ public class AdminInfoController {
             if (result!=null){
                 //        为用户生成jwt令牌
                 Map<String, Object> claims = new HashMap<>();
-                claims.put(JwtClaimsConstant.USER_ID,result.getId());
-                String jwt = JwtUtil.createJWT(jwtProperties.getUserSecretKey(), jwtProperties.getUserTtl(), claims);
+                claims.put(JwtClaimsConstant.ADMIN_ID,result.getId());
+                String jwt = JwtUtil.createJWT(jwtProperties.getAdminSecretKey(), jwtProperties.getAdminTtl(), claims);
                 AdminLoginVO adminLoginVO = new AdminLoginVO();
                 adminLoginVO.setId(result.getId());
                 adminLoginVO.setToken(jwt);
