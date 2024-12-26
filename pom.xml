@@ -6,7 +6,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
+        <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.lanqiao</groupId>
     <artifactId>Library_Final_Project</artifactId>
@@ -93,12 +94,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
-<!--分页-->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.4.7</version>
         </dependency>
 
     </dependencies>

@@ -143,7 +143,6 @@
 </div>
 
 </body>
-
 <script>
 
     let myVue = new Vue({
@@ -162,15 +161,16 @@
             sunbmitUser(user) {
                 localStorage.setItem('userInfoSimple',JSON.stringify(user));
                 axios.post('/admin/login', user).then(res => {
-                    if (res.data.code == 1) {
+                    if (res.data.code == 200) {
                         this.$message({
                             showClose: true,
                             message: '登录成功，欢迎回来！',
                             type: 'success'
                         });
                         // 存储JWT令牌
-                        localStorage.setItem('jwtToken', res.data.token);
-                        localStorage.setItem('userInfo',JSON.stringify(res.data));
+                        localStorage.setItem('token', res.data.data.token);
+
+                        //localStorage.setItem('userInfo',JSON.stringify(res.data));
                         window.location.href = "index.html";
                     } else {
                         this.$message.error(res.data.msg);
