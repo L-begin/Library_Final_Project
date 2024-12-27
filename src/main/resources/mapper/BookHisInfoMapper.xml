@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.lanqiao.library_final_project.mapper.BookHisInfoMapper">
 
+    <select id="pagequery" resultType="cn.lanqiao.library_final_project.module.pojo.BookHisInfo">
+        select * from book_his_info
+        <where>
+            <if test="name != null and name != ''">
+                and book_name like concat('%',#{name},'%')
+            </if>
+            <if test="username != null and username != ''">
+                and username like concat('%',#{username},'%')
+            </if>
+            <if test="card != null and card != ''">
+                and card like concat('%',#{card},'%')
+            </if>
+            <if test="adminName != null and adminName != ''">
+                and admin_name like concat('%',#{adminName},'%')
+            </if>
+        </where>
+    </select>
 </mapper>
