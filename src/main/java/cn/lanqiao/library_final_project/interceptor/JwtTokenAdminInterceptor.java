@@ -8,6 +8,7 @@ import cn.lanqiao.library_final_project.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -40,19 +41,24 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //判断当前拦截到的是Controller的方法还是其他资源
-        if (!(handler instanceof HandlerMethod)) {
-            //当前拦截到的不是动态方法，直接放行
-            return true;
-        }
+//        if (!(handler instanceof HandlerMethod)) {
+//            //当前拦截到的不是动态方法，直接放行
+//            return true;
+//        }
         //1、从请求头中获取令牌
-        String token = request.getHeader(jwtProperties.getAdminTokenName());
+        String token =null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies!=null){
+            for (Cookie cookie : cookies) {
+                if ("token".equals(cookie.getName())){
+                    token = cookie.getValue();
+                }
+            }
+        }
         //2、校验令牌
         try {
 //            log.info("jwt校验:{}", token);
-            Claims claims = JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
-            Long adminId = Long.valueOf(claims.get(JwtClaimsConstant.ADMIN_ID).toString());
-//            log.info("当前管理员用户id：{}", adminId);
-            BaseContext.setCurrentId(adminId);
+            JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
             //3、通过，放行
             return true;
         } catch (Exception ex) {

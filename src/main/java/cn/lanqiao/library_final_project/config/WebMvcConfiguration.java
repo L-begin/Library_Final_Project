@@ -35,11 +35,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(jwtTokenAdminInterceptor)
-//                .addPathPatterns("/html/admin/**") // 拦截 /html/admin/ 下的所有请求
-//                .excludePathPatterns("/html/admin/login.html");
+        registry.addInterceptor(jwtTokenAdminInterceptor)
+                .addPathPatterns("/html/admin/**")
+                .addPathPatterns("/admin/**") // 拦截 /html/admin/ 下的所有请求
+                .addPathPatterns("/book/**")
+                .excludePathPatterns("/admin/login")
+                .excludePathPatterns("/html/admin/login.html");
         registry.addInterceptor(jwtTokenUserInterceptor)
-                .addPathPatterns("/html/user/**") // 拦截 /html/user/ 下的所有请求
-                .excludePathPatterns("/html/user/login.html");
+                .addPathPatterns("/user/**")// 拦截 /html/user/ 下的所有请求
+                .excludePathPatterns("/html/common/login.html");
     }
 }

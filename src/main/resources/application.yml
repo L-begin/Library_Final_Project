@@ -31,3 +31,5 @@ sky:
     user-token-name: Authorization
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
+image:
+  path: classpath:/CaptchaImage/
