@@ -41,8 +41,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/book/**")
                 .excludePathPatterns("/admin/login")
                 .excludePathPatterns("/html/admin/login.html");
-        registry.addInterceptor(jwtTokenUserInterceptor)
-                .addPathPatterns("/user/**")// 拦截 /html/user/ 下的所有请求
-                .excludePathPatterns("/html/common/login.html");
+//        registry.addInterceptor(jwtTokenUserInterceptor)
+//                .addPathPatterns("/user/**")// 拦截 /html/user/ 下的所有请求
+//                .excludePathPatterns("/html/common/login.html");
     }
 }
