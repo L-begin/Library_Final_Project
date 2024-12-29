@@ -143,4 +143,34 @@ public class UserInfoController {
         return Result.success();
     }
 
+    /**
+     * 校验用户名是否存在
+     * @param username
+     * @return
+     */
+    @GetMapping("/checkUsername")
+    public Result checkUsername(@RequestParam String username) {
+        if (username == null || username.isEmpty()) {
+            return Result.error("用户名不能为空");
+        }
+        UserInfo userInfo = iUserInfoService.lambdaQuery().eq(UserInfo::getUsername, username).one();
+        if (userInfo != null){
+            return Result.error("用户名存在");
+        }
+        return Result.success();
+    }
+    @PostMapping(value = "/register")
+    public Result register(@RequestBody UserInfo userInfo) {
+        log.info("用户注册信息{}", userInfo);
+        UserInfo selectUser = iUserInfoService.lambdaQuery().eq(UserInfo::getUsername, userInfo.getUsername()).one();
+        if (selectUser != null){
+            return Result.error("用户名已存在");
+        }
+//        数据加密
+        String password = userInfo.getPassword();
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
+        userInfo.setPassword(password);
+        iUserInfoService.save(userInfo);
+        return Result.success();
+    }
 }

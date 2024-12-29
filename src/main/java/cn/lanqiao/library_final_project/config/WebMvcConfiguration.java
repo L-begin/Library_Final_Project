@@ -45,6 +45,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/user/**")// 拦截 /html/user/ 下的所有请求
                 .addPathPatterns("/html/common/**")
                 .excludePathPatterns("/user/login")
-                .excludePathPatterns("/html/common/login.html");
+                .excludePathPatterns("/user/checkUsername")
+                .excludePathPatterns("/user/register")
+                .excludePathPatterns("/html/common/login.html")
+                .excludePathPatterns("/html/common/register.html");
     }
 }

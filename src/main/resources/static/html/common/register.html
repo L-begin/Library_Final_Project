@@ -83,7 +83,7 @@
                               prop="username"
                               :rules="[
                               { required: true, message: '用户名不能为空',trigger: 'blur'},{
-                              min: 4, max: 20, message: '用户名要大于5位字符，小于20位字符', trigger: 'blur'}
+                              min: 5, max: 20, message: '用户名要大于5位字符，小于20位字符', trigger: 'blur'}
                             ]"   >
 
 
@@ -209,7 +209,35 @@
         },
         methods: {
             submitUserInfo(userInfo) {
-               axios.post("/user/register",userInfo).then(res=>{
+                const username = this.userInfo.username;
+                if (!username) {
+                    this.$message.error('用户名不能为空');
+                    return;
+                }
+
+                if (username.length < 5 || username.length > 20) {
+                    this.$message.error('用户名要大于5位字符，小于20位字符');
+                    return;
+                }
+
+                if (this.usernameExist) {
+                    this.$message.error('用户名重复，禁止发送注册请求');
+                    return;
+                }
+                const password = this.userInfo.password;
+                if (!password){
+                    this.$message.error('密码不能为空');
+                    return;
+                }
+                if (password.length < 6 || password.length > 20) {
+                    this.$message.error('密码要大于6位字符，小于20位字符');
+                    return;
+                }
+               axios.post("/user/register",JSON.stringify(this.userInfo),{
+                   headers: {
+                   'Content-Type': 'application/json'
+               }
+               }).then(res=>{
                    if (res.data.code === 1){
                        this.$message.success('注册成功！');
 
@@ -247,6 +275,15 @@
                 this.$refs.userInfo.resetFields();
             },
             checkUsername() {
+                this.showDivUsername = false;
+                this.usernameExist = false;
+                const username = this.userInfo.username;
+                if (!username) {
+                    return; // 如果用户名为空，不发送请求
+                }
+                if (username.length < 5 || username.length > 20){
+                    return;
+                }
                 axios.get('/user/checkUsername', { params: { username: this.userInfo.username }})
                     .then(res => {
                         console.log(res.data.code)
@@ -256,6 +293,7 @@
 
                         }
                         else {
+                            this.showDivUsername = true;
                             this.usernameExist = true;
                         }
 
