@@ -102,6 +102,7 @@
                     <span>{{headTitle}}</span>
 
                 </div>
+                <div style="float: left;margin-top: 20px;border: 0px solid;margin-left: 820px">{{userInfo.username}}</div>
                 <el-button :plain="true" type="danger"
 
                            @click="logoutYes()"
@@ -176,10 +177,8 @@
         },
         computed: {},
         created() {
-            // const userInfo = window.localStorage.getItem('userInfo')
-            // if (userInfo) {
-            //   this.userInfo = JSON.parse(userInfo)
-            // }
+            const userInfo = JSON.parse(localStorage.getItem('userInfo')).data;
+              this.userInfo = userInfo;
             this.closeLoading()
         },
         beforeDestroy() {

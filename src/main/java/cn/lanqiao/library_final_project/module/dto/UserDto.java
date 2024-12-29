@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class userDto {
+public class UserDto {
 
     private int page; // 当前页码
     private int pageSize; // 每页大小
@@ -15,4 +15,6 @@ public class userDto {
     private String username; //账号
 
     private String name;  //姓名
+    private String code; //验证码信息
+    private String password; //密码
 }

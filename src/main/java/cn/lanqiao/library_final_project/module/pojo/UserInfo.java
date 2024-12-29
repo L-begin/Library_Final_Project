@@ -57,5 +57,7 @@ public class UserInfo implements Serializable {
     @TableField("max_num")
     private Integer maxNum;
 
-
+    public UserInfo(String username) {
+        this.username = username;
+    }
 }

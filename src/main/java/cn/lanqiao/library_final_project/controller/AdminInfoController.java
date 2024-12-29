@@ -4,7 +4,6 @@ package cn.lanqiao.library_final_project.controller;
 import cn.lanqiao.library_final_project.constant.JwtClaimsConstant;
 import cn.lanqiao.library_final_project.context.BaseContext;
 import cn.lanqiao.library_final_project.module.pojo.AdminInfo;
-import cn.lanqiao.library_final_project.module.pojo.vo.AdminLoginVO;
 import cn.lanqiao.library_final_project.properties.JwtProperties;
 import cn.lanqiao.library_final_project.result.Result;
 import cn.lanqiao.library_final_project.service.IAdminInfoService;
@@ -36,7 +35,7 @@ public class AdminInfoController {
     @Autowired
     private JwtProperties jwtProperties;
         @PostMapping( "/admin/login")
-        public Result login(@RequestBody AdminInfo adminInfo, HttpServletResponse response) {
+        public Result<AdminInfo> login(@RequestBody AdminInfo adminInfo, HttpServletResponse response) {
 //            数据加密
             String password = adminInfo.getPassword();
             password = DigestUtils.md5DigestAsHex(password.getBytes());
@@ -57,8 +56,20 @@ public class AdminInfoController {
                 cookie.setMaxAge(7200000); // 设置Cookie的有效时间，单位为秒
                 // 将Cookie添加到响应中
                 response.addCookie(cookie);
-                return Result.success();
+                BaseContext.setCurrentId(Long.valueOf(result.getId()));
+                return Result.success(new AdminInfo(result.getUsername()));
             }
             return Result.error("登录失败");
+        }
+        @GetMapping("/admin/logout")
+        public Result logout(HttpServletResponse response) {
+            Cookie cookie = new Cookie("token", null);
+            cookie.setMaxAge(0); // Set max age to 0 to remove the cookie
+            cookie.setHttpOnly(true);
+            cookie.setSecure(true); // Use true if you are using HTTPS
+            cookie.setPath("/");
+            response.addCookie(cookie);
+            BaseContext.removeCurrentId();
+            return Result.success();
         }
 }

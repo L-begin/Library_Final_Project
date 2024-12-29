@@ -1,6 +1,6 @@
 package cn.lanqiao.library_final_project.service.impl;
 
-import cn.lanqiao.library_final_project.module.dto.userDto;
+import cn.lanqiao.library_final_project.module.dto.UserDto;
 import cn.lanqiao.library_final_project.module.pojo.BooksInfo;
 import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import cn.lanqiao.library_final_project.mapper.UserInfoMapper;
@@ -27,7 +27,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
         @Autowired
         private UserInfoMapper userInfoMapper;
-    public PageResult pagequery(userDto userDto) {
+    public PageResult pagequery(UserDto userDto) {
         PageHelper.startPage(userDto.getPage(), userDto.getPageSize());
         Page<UserInfo> page = userInfoMapper.pagequery(userDto);
         //获取总记录数 和当前页数据

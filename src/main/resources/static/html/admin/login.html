@@ -150,7 +150,7 @@
         data() {
             return {
                 adminInfo: {
-                    operatorId:"",
+                    id:"",
                     username: "admin",
                     password: "123456",
                 }
@@ -168,8 +168,10 @@
                             type: 'success'
                         });
                         // 存储JWT令牌
-                        //localStorage.setItem('userInfo',JSON.stringify(res.data));
-                        window.location.href = "index.html";
+                        localStorage.setItem('AdminInfo',JSON.stringify(res.data));
+                        setTimeout(function() {
+                            window.location.href = "index.html";
+                        }, 500);
                     } else {
                         this.$message.error(res.data.msg);
                     }
