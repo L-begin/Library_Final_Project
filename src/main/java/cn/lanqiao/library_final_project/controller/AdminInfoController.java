@@ -51,7 +51,7 @@ public class AdminInfoController {
                 // 创建Cookie
                 Cookie cookie = new Cookie("token", jwt);
                 cookie.setHttpOnly(true); // 设置为HttpOnly，防止JavaScript访问
-                cookie.setSecure(true); // 如果使用HTTPS，设置为true
+                //cookie.setSecure(true); // 如果使用HTTPS，设置为true
                 cookie.setPath("/"); // 设置Cookie的路径
                 cookie.setMaxAge(7200000); // 设置Cookie的有效时间，单位为秒
                 // 将Cookie添加到响应中
@@ -66,9 +66,10 @@ public class AdminInfoController {
             Cookie cookie = new Cookie("token", null);
             cookie.setMaxAge(0); // Set max age to 0 to remove the cookie
             cookie.setHttpOnly(true);
-            cookie.setSecure(true); // Use true if you are using HTTPS
+           // cookie.setSecure(true); // Use true if you are using HTTPS
             cookie.setPath("/");
             response.addCookie(cookie);
+            // 设置SameSite属性
             BaseContext.removeCurrentId();
             return Result.success();
         }

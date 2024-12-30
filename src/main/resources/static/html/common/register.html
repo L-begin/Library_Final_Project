@@ -90,7 +90,7 @@
                     <el-input placeholder="请输入用户名" prefix-icon="el-icon-user"
                               v-model="userInfo.username" @blur="checkUsername"></el-input>
 
-                    <div v-show="showDivUsername" style="border: solid 0px;text-align: left;font-size: 11px;height: 20px">
+                    <div v-show="showDivUsername" style="border: solid 0px;text-align: left;font-size: 11px;height: 12px">
                         <span v-if="usernameExist" style="color: red;">用户名已存在</span>
                         <span v-else style="color: green;">用户名可用</span>
 

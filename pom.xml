@@ -10,7 +10,6 @@
     </parent>
     <groupId>cn.lanqiao</groupId>
     <artifactId>Library_Final_Project</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>Library_Final_Project</name>
     <description>Library_Final_Project</description>
     <url/>
@@ -28,6 +27,8 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
     <dependencies>
         <!--  验证码 -->
