@@ -24,4 +24,9 @@ public interface BookHisInfoMapper extends BaseMapper<BookHisInfo> {
      */
 
     Page<BookHisInfo> pagequery(HisDto hisDto);
+
+
+    Page<BookHisInfo> Hispagequery(HisDto hisDto);
+    BookHisInfo selectById(Long id);
+
 }

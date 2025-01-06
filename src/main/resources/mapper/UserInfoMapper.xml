@@ -13,4 +13,20 @@
             </if>
         </where>
     </select>
+    <!-- UserMapper.xml -->
+    <select id="selectByUsername" resultType="cn.lanqiao.library_final_project.module.pojo.UserInfo">
+        SELECT aid, username, name, password, email, phone, status, lend_num, max_num
+        FROM user_info
+        WHERE username = #{username}
+    </select>
+
+
+    <update id="updateUser" parameterType="cn.lanqiao.library_final_project.module.dto.UserDto">
+        UPDATE user_info
+        SET name = #{name},
+            email = #{email},
+            phone = #{phone},
+            password = #{password} -- 确保这里会更新密码字段
+        WHERE username = #{username}
+    </update>
 </mapper>
