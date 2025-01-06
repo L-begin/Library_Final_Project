@@ -22,4 +22,5 @@ public interface IBookHisInfoService extends IService<BookHisInfo> {
      */
 
     PageResult pagequery(HisDto hisDto);
+
 }

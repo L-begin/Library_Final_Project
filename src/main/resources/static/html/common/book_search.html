@@ -216,15 +216,15 @@
                 });
             },
             borrowBook111(book, days) {
-                const currentTime = new Date();
+                let currentTime = new Date();
 
                 // 将天数转换为毫秒数
                 const millisecondsInADay = 1000 * 60 * 60 * 24;
                 const totalMilliseconds = days * millisecondsInADay;
 
                 // 计算结束时间
-                const endTime1 = new Date(currentTime.getTime() + totalMilliseconds);
-
+                const endTime1 = new Date(currentTime.getTime() + totalMilliseconds).toISOString().split('T')[0];
+                currentTime = currentTime.toISOString().split('T')[0];
                 const Info = {
                     bid:book.bid,
                     card:book.card,

@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2024-12-24
  */
 @Mapper
-public interface AdminInfoMapper extends BaseMapper<AdminInfo> {
+public interface  AdminInfoMapper extends BaseMapper<AdminInfo> {
 
 }

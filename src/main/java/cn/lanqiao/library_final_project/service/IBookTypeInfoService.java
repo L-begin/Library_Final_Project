@@ -1,6 +1,7 @@
 package cn.lanqiao.library_final_project.service;
 
 import cn.lanqiao.library_final_project.module.dto.typeDto;
+import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.module.pojo.BookTypeInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -30,4 +31,5 @@ public interface IBookTypeInfoService extends IService<BookTypeInfo> {
      */
 
     PageResult pagequery(typeDto typeDto);
+
 }

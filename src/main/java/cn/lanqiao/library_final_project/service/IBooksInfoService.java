@@ -20,6 +20,4 @@ public interface IBooksInfoService extends IService<BooksInfo> {
       * @return
       */
      PageResult pagequery(BooksInfoDto booksInfoDto);
-
-
 }
