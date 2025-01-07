@@ -18,7 +18,8 @@ public class HisDto {
 
     private String username; //借阅者姓名
 
-    private String card; //借阅者姓名
+    private String card; //图书书号
 
     private String name;  //姓名  借阅者姓名
+    private int aid;
 }

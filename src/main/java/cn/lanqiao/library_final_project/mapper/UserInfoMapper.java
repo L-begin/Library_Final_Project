@@ -5,6 +5,7 @@ import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -24,4 +25,7 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
      */
 
     Page<UserInfo> pagequery(UserDto userDto);
+
+    UserInfo selectByUsername(String username);
+    int updateUser(@Param("userDto") UserDto userDto);
 }

@@ -5,7 +5,6 @@ import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.lang.UUID;
 import cn.lanqiao.library_final_project.result.Result;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
