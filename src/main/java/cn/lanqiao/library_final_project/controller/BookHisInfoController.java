@@ -3,8 +3,7 @@ package cn.lanqiao.library_final_project.controller;
 
 import cn.lanqiao.library_final_project.module.pojo.BooksInfo;
 import cn.lanqiao.library_final_project.service.IBooksInfoService;
-import cn.lanqiao.library_final_project.service.impl.BookHisInfoServiceImpl;
-import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import cn.lanqiao.library_final_project.result.PageResult;
 import cn.lanqiao.library_final_project.result.Result;
 import cn.lanqiao.library_final_project.service.IBookHisInfoService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
