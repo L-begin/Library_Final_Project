@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+<!-- 头部模块 -->
+    <div class="header">
+        <div class="title">
+            <span>数据可视化大屏展示系统</span>
+        </div>
+        <div class="time">
+            <span></span>
+        </div>
+        <div class="company">
+
+        </div>
+    </div>
+
+    <!-- 主题模块 -->
+    <div class="main" id="app">
+        <div class="animate">
+            <!-- 浮动层 -->
+            <div class="float" >
+                <div class="floating1">
+                    <div id="roate1">
+                        <div class="roate-item">
+                            <p>12356</p>
+                            <span>销售额</span>
+                        </div>
+                        <div class="roate-item">
+                            <p>53%</p>
+                            <span>同比</span>
+                        </div>
+                        <div class="roate-item">
+                            <p>63%</p>
+<!--                            <span>完成率</span>-->
+                        </div>
+                    </div>
+                    <p class="pm">NO.4</p>
+                </div>
+                <div class="floating2">
+                    <div id="roate2">
+                        <div class="roate-item2">
+                            <p>12356</p>
+                            <span>销售额</span>
+                        </div>
+                        <div class="roate-item2">
+                            <p>53%</p>
+                            <span>同比</span>
+                        </div>
+                        <div class="roate-item2">
+                            <p>65%</p>
+                            <span>完成率</span>
+                        </div>
+                    </div>
+                    <p class="pm2">NO.3</p>
+                </div>
+                <div class="floating3">
+                    <div id="roate3">
+                        <div class="roate-item3">
+                            <p>12356</p>
+                            <span>销售额</span>
+                        </div>
+                        <div class="roate-item3">
+                            <p>53%</p>
+                            <span>同比</span>
+                        </div>
+                        <div class="roate-item3">
+                            <p>70%</p>
+                            <span>完成率</span>
+                        </div>
+                    </div>
+                    <p class="pm3">NO.2</p>
+                </div>
+                <div class="floating4">
+                    <div id="roate4">
+                        <div class="roate-item4">
+                            <p>12356</p>
+                            <span>销售额</span>
+                        </div>
+                        <div class="roate-item4">
+                            <p>53%</p>
+                            <span>同比</span>
+                        </div>
+                        <div class="roate-item4">
+                            <p>75%</p>
+                            <span>完成率</span>
+                        </div>
+                    </div>
+                    <p class="pm4">NO.1</p>
+                </div>
+                <div class="floating5">
+                    <div id="roate5">
+                        <div class="roate-item5">
+                            <p>12356</p>
+                            <span>销售额</span>
+                        </div>
+                        <div class="roate-item5">
+                            <p>53%</p>
+                            <span>同比</span>
+                        </div>
+                        <div class="roate-item5">
+                            <p>86%</p>
+                            <span>完成率</span>
+                        </div>
+                    </div>
+<!--                    <p class="pm5">NO.1</p>-->
+                </div>
+            </div>
+            <div class="sum">
+                <div class="data">
+                    <p>总书籍量</p>
+                    <span>{{analysis.bookCount}}</span>
+                </div>
+                <div class="cicle1"></div>
+                <canvas id="canvas1"></canvas>
+                <canvas id="canvas2"></canvas>
+                <div class="data1">
+                    <div class="qiu">
+                        <p>{{analysis.userCount}}</p>
+                    </div>
+                    <span>用户量</span>
+                </div>
+                <div class="data2">
+                    <div class="qiu">
+                        <p>{{analysis.bookTypeCount}}</p>
+                    </div>
+                    <span>书籍类型</span>
+                </div>
+                <div class="data3">
+                    <div class="qiu">
+                        <p>86%</p>
+                    </div>
+                    <span>借阅率</span>
+                </div>
+                <div class="data4">
+                    <div class="qiu">
+                        <p>{{analysis.bookBorrowCount}}</p>
+                    </div>
+                    <span>书籍借阅量</span>
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="charts2">
+                <div class="charts-title">
+                    <span>书籍借阅排名</span>
+                </div>
+                <div class="charts-content2 content">
+                    <table  id="bookBorrowTable">
+                        <thead>
+                        <tr>
+                            <td>排名</td>
+                            <td>书名</td>
+                            <td>借阅量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/jquery-1.11.0.min.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/axios-0.18.0.js"></script>
+<script>
+ new Vue({
+     el: '#app',
+     data: {
+         analysis : {
+
+         }
+     },
+     mounted(){
+         this.initializeData();
+     },
+     methods:{
+         initializeData()
+         {axios.get('/data').then(res=>{
+             if (res.data.code == 1){
+                 this.analysis = res.data.data;
+                 const dataVO = res.data.data;
+                 this.renderBookBorrowTable(dataVO.bookBorrowRank);
+             }
+         })
+         },
+         renderBookBorrowTable(bookNameCounts) {
+             const tableBody = document.querySelector('#bookBorrowTable tbody');
+             tableBody.innerHTML = ''; // 清空现有内容
+
+             bookNameCounts.forEach((item, index) => {
+                 const row = document.createElement('tr');
+                 row.innerHTML = `                        <td style="font-size: 16px;">${index + 1}</td>
+                        <td style="font-size: 16px;">${item.bookName}</td>
+                        <td style="font-size: 16px;">${item.count}</td>
+                    `;
+                 tableBody.appendChild(row);
+             });
+         }
+
+     }
+ })
+
+
+</script>
+</html>

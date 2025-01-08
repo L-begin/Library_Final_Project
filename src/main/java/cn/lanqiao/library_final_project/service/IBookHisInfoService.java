@@ -5,6 +5,8 @@ import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -22,4 +24,6 @@ public interface IBookHisInfoService extends IService<BookHisInfo> {
      */
 
     PageResult pagequery(HisDto hisDto);
+
+    List<BookHisInfo> countByBookName();
 }

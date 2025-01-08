@@ -35,6 +35,11 @@ public class BookHisInfoServiceImpl extends ServiceImpl<BookHisInfoMapper, BookH
         return new  PageResult (total,result);
     }
 
+    @Override
+    public List<BookHisInfo> countByBookName() {
+        return bookHisInfoMapper.countByBookName();
+    }
+
 
     public BookHisInfo getHistoryById(Long id) {
         return bookHisInfoMapper.selectById(id);

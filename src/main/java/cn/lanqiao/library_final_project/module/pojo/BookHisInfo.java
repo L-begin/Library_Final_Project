@@ -61,5 +61,6 @@ public class BookHisInfo implements Serializable {
     @TableField("status")
     private Integer status;
 
+    private Integer count;
 
 }
