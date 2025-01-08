@@ -192,7 +192,7 @@
         data() {
             return {
                 userInfo: {
-                    username: "zs",
+                    username: "ljjsb",
                     password: "123456",
                     code: ""
                 },
@@ -201,6 +201,10 @@
         },
         methods: {
             sunbmitUser(user) {
+                if(user.code == "" && user.code.length == 0){
+                    this.$message.error("验证码不能为空");
+                    return;
+                }
                 localStorage.setItem('userInfoSimple',JSON.stringify(user));
                 axios.post('/user/login', user).then(res => {
                     if (res.data.code === 1) {
