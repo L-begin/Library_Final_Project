@@ -100,9 +100,14 @@
                 <!--              &lt;!&ndash; <div class="logout" @click="logout">退出</div> &ndash;&gt;-->
                 <!--&lt;!&ndash;              <img src="images/icons/btn_close@2x.png" class="outLogin" alt="退出" @click="logout" />&ndash;&gt;-->
                 <!--            </div>-->
-                <div style="border: 0px solid;width: 200px;height: 50px;float: right;margin-right: 20px">
+                <div style="border: 0px solid;width: 400px;height: 50px;float: right;margin-right: 20px">
 
-                    <div style="float: left;margin-top: 20px;border: 0px solid;">{{userInfo.username}}</div>
+                    <div style="float: left;margin-top: 13px;border: 0px solid;">
+                        <el-button type="primary" @click="openDataScreen()">数据大屏</el-button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        {{userInfo.username}}
+
+                    </div>
 
 
                     <el-button :plain="true" type="danger"
@@ -260,6 +265,9 @@
                 this.timer = setTimeout(() => {
                     this.loading = false
                 }, 1000)
+            },
+            openDataScreen() {
+                window.location.href = "http://localhost:8080/html/data/index.html";
             }
         }
     })
