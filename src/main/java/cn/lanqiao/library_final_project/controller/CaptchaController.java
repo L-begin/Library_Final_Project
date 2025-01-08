@@ -5,6 +5,7 @@ import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.lang.UUID;
 import cn.lanqiao.library_final_project.result.Result;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 @RestController
+@Slf4j
 public class CaptchaController {
     @Value("${image.path}")
     private String imagePath;
@@ -44,7 +46,7 @@ public class CaptchaController {
             fos.close();
             // 将验证码信息存储到Session中
             session.setAttribute("captchaCode", lineCaptcha.getCode());
-            System.out.println("验证码：" + lineCaptcha.getCode());
+            log.info("验证码：" + lineCaptcha.getCode());
             HashMap<String, String> result = new HashMap<>();
             result.put("codeurl", "/image/" + uuid + ".png");
             result.put("codekey", uuid);
