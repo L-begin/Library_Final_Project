@@ -169,7 +169,7 @@
                 }
                 //按照分类搜索
 
-                axios.get("/book_his/his", {params})
+                axios.get("/book_his/his", { params: yourParamsObject })
                     .then(res => {
                         this.tableData = res.data.data.records.map(record => {
                             // 格式化日期
@@ -236,9 +236,5 @@
             }
         }
     })
-
-
 </script>
-
-
 </html>

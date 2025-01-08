@@ -2,6 +2,7 @@ package cn.lanqiao.library_final_project.controller;
 
 
 import cn.lanqiao.library_final_project.module.dto.BooksInfoDto;
+import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.module.pojo.BookTypeInfo;
 import cn.lanqiao.library_final_project.module.pojo.BooksInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
@@ -75,8 +76,8 @@ public class BooksInfoController {
      */
 
     @DeleteMapping("/book_info")
-    public Result delete (@RequestParam List<Long> bids){
-            log.info("根据id批量删除数据{}",bids);
+    public Result delete(@RequestParam List<Long> bids){
+        log.info("根据id批量删除数据{}",bids);
         boolean result = iBooksInfoService.removeByIds(bids);
         if (result){
             return Result.success("删除成功");
@@ -102,5 +103,6 @@ public class BooksInfoController {
             return Result.error("修改失败");
         }
     }
+
 
 }

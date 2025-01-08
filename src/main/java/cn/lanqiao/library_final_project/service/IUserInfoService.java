@@ -3,6 +3,7 @@ package cn.lanqiao.library_final_project.service;
 import cn.lanqiao.library_final_project.module.dto.UserDto;
 import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
+import cn.lanqiao.library_final_project.result.Result;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -21,4 +22,6 @@ public interface IUserInfoService extends IService<UserInfo> {
      * @return
      */
     PageResult pagequery(UserDto userDto);
+
+    Result<?> editUserInfo(UserDto userDto);
 }

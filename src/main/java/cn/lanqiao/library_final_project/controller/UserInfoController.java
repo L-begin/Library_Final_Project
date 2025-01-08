@@ -173,4 +173,9 @@ public class UserInfoController {
         iUserInfoService.save(userInfo);
         return Result.success();
     }
+
+    @PostMapping("/editUser")
+    public Result<?> editUserInfo(@RequestBody UserDto userDto) {
+        return iUserInfoService.editUserInfo(userDto);
+    }
 }

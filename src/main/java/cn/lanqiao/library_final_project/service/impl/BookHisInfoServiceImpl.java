@@ -3,7 +3,6 @@ package cn.lanqiao.library_final_project.service.impl;
 import cn.lanqiao.library_final_project.module.dto.HisDto;
 import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.mapper.BookHisInfoMapper;
-import cn.lanqiao.library_final_project.module.pojo.BooksInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
 import cn.lanqiao.library_final_project.service.IBookHisInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -34,5 +33,10 @@ public class BookHisInfoServiceImpl extends ServiceImpl<BookHisInfoMapper, BookH
         long total = page.getTotal();
         List<BookHisInfo> result = page.getResult();
         return new  PageResult (total,result);
+    }
+
+    @Override
+    public BookHisInfo getHistoryById(Long id) {
+        return bookHisInfoMapper.selectById(id);
     }
 }

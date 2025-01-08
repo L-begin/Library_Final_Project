@@ -19,4 +19,21 @@
             </if>
         </where>
     </select>
+    <select id="Hispagequery" resultType="cn.lanqiao.library_final_project.module.pojo.BookHisInfo">
+        select * from book_his_info
+        <where>
+            <if test="aid != null">
+                and aid = #{aid}
+            </if>
+            <if test="name != null and name != ''">
+                and book_name like concat('%',#{name},'%')
+            </if>
+            <if test="card != null and card != ''">
+                and card like concat('%',#{card},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectById" resultType="cn.lanqiao.library_final_project.module.pojo.BookHisInfo">
+        SELECT * FROM book_his_info WHERE aid = #{aid}
+    </select>
 </mapper>

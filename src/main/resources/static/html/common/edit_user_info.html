@@ -135,12 +135,15 @@
             },
             // 处理修改提交
             handleEditSubmit() {
+                // 将 oldPassword 添加到 editForm 中
+                this.editForm.oldPassword = this.oldPassword;
+
                 if (!this.oldPassword || !this.editForm.password || !this.confirmPassword || !this.editForm.email || !this.editForm.phone) {
                     this.$message.error('请填写完整信息');
                     return;
                 }
 
-                const  password = JSON.parse(localStorage.getItem('userInfoSimple')).password;
+                const password = JSON.parse(localStorage.getItem('userInfoSimple')).password;
                 console.log(password);
                 if (this.oldPassword !== password) {
                     this.$message.error('旧密码不正确');
@@ -157,34 +160,19 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-
-
-                    axios.post("/user/edit",this.editForm).then(res=>{
-                        if (res.data.code === 1){
+                    axios.post("/user/editUser", this.editForm).then(res => {
+                        if (res.data.code === 1) {
                             this.$message.success('修改成功！');
-
                             localStorage.removeItem('userInfo');
-                            localStorage.removeItem('userInfoSimple')
+                            localStorage.removeItem('userInfoSimple');
                             top.location.replace("login.html");
-
+                        } else {
+                            this.$message.error(res.data.msg || '修改失败！');
                         }
-                        else {
-                            this.$message.error(res.data.msg || '注册失败！');
-                        }
-
-                    })
-
-
-                }).catch(() => {
-                    // 如果用户点击了取消按钮，则不执行任何操作
-                });
-
+                    });
+                }).catch(() => {});
             }
         }
     })
-
-
 </script>
-
-
 </html>

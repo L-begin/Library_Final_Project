@@ -2,6 +2,7 @@ package cn.lanqiao.library_final_project.controller;
 
 
 import cn.lanqiao.library_final_project.module.dto.typeDto;
+import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.module.pojo.BookTypeInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
 import cn.lanqiao.library_final_project.result.Result;
@@ -46,12 +47,12 @@ public class BookTypeInfoController {
      * @return
      */
     @PostMapping
-    public Result<String> save(@RequestBody BookTypeInfo bookTypeInfo){
+    public Result<String> save(@RequestBody BookTypeInfo bookTypeInfo) {
         log.info("新增分类参数{}", bookTypeInfo);
         boolean result = iBookTypeInfoService.save(bookTypeInfo);
-        if (result){
+        if (result) {
             return Result.success("添加成功");
-        }else {
+        } else {
             return Result.error("添加失败");
         }
 
@@ -63,14 +64,14 @@ public class BookTypeInfoController {
      * @return
      */
     @PutMapping
-    public  Result update( BookTypeInfo bookTypeInfo){
+    public Result update(BookTypeInfo bookTypeInfo) {
 
-        log.info("修改书籍分类信息{}",bookTypeInfo);
+        log.info("修改书籍分类信息{}", bookTypeInfo);
         //根据id来修改数据
         boolean result = iBookTypeInfoService.updateById(bookTypeInfo);
-        if (result){
+        if (result) {
             return Result.success("修改成功");
-        }else {
+        } else {
             return Result.error("修改失败");
         }
     }
@@ -81,12 +82,12 @@ public class BookTypeInfoController {
      * @return
      */
     @DeleteMapping("/{tid}")
-    public Result delete (@PathVariable Integer tid){
-        log.info("根据id删除单个数据{}",tid);
+    public Result delete(@PathVariable Integer tid) {
+        log.info("根据id删除单个数据{}", tid);
         boolean result = iBookTypeInfoService.removeById(tid);
-        if (result){
+        if (result) {
             return Result.success("删除成功");
-        }else {
+        } else {
             return Result.error("删除失败");
         }
     }
@@ -97,14 +98,16 @@ public class BookTypeInfoController {
      * @return
      */
     @DeleteMapping("/batchDelete")
-    public Result delete (@RequestParam List<Long> tids){
-        log.info("根据id批量删除数据{}",tids);
+    public Result delete(@RequestParam List<Long> tids) {
+        log.info("根据id批量删除数据{}", tids);
         boolean result = iBookTypeInfoService.removeByIds(tids);
-        if (result){
+        if (result) {
             return Result.success("批量删除成功");
-        }else {
+        } else {
             return Result.error("批量删除失败");
         }
     }
+
+
 
 }
