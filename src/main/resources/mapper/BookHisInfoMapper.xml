@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.lanqiao.library_final_project.mapper.BookHisInfoMapper">
-
     <select id="pagequery" resultType="cn.lanqiao.library_final_project.module.pojo.BookHisInfo">
         select * from book_his_info
         <where>
@@ -19,21 +18,5 @@
             </if>
         </where>
     </select>
-    <select id="Hispagequery" resultType="cn.lanqiao.library_final_project.module.pojo.BookHisInfo">
-        select * from book_his_info
-        <where>
-            <if test="aid != null">
-                and aid = #{aid}
-            </if>
-            <if test="name != null and name != ''">
-                and book_name like concat('%',#{name},'%')
-            </if>
-            <if test="card != null and card != ''">
-                and card like concat('%',#{card},'%')
-            </if>
-        </where>
-    </select>
-    <select id="selectById" resultType="cn.lanqiao.library_final_project.module.pojo.BookHisInfo">
-        SELECT * FROM book_his_info WHERE aid = #{aid}
-    </select>
+
 </mapper>

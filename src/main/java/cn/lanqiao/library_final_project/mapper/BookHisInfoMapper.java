@@ -5,6 +5,10 @@ import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -24,9 +28,8 @@ public interface BookHisInfoMapper extends BaseMapper<BookHisInfo> {
      */
 
     Page<BookHisInfo> pagequery(HisDto hisDto);
+    // 根据条件查询图书借阅历史记录分页数据
 
 
-    Page<BookHisInfo> Hispagequery(HisDto hisDto);
-    BookHisInfo selectById(Long id);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -35,8 +36,4 @@ public class BookHisInfoServiceImpl extends ServiceImpl<BookHisInfoMapper, BookH
         return new  PageResult (total,result);
     }
 
-
-    public BookHisInfo getHistoryById(Long id) {
-        return bookHisInfoMapper.selectById(id);
-    }
 }

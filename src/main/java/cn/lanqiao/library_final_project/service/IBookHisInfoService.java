@@ -5,6 +5,9 @@ import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -22,4 +25,5 @@ public interface IBookHisInfoService extends IService<BookHisInfo> {
      */
 
     PageResult pagequery(HisDto hisDto);
+
 }
