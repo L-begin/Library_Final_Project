@@ -274,7 +274,7 @@
                     'type': 'warning'
                 }).then(() => {
 
-                    axios.delete("/user?aids=" + obj.aid).then(res => {
+                    axios.delete("/admin?aids=" + obj.aid).then(res => {
                         if (res.data.code === 1) {
                             this.$message.success('删除成功！')
                             this.handleQuery()
@@ -302,7 +302,7 @@
                     // 执行批量删除操作
                     const aids = this.selectedRows.map(row => row.aid);
                     // console.log(tids.toString())
-                    axios.delete("/user?aids=" + aids.toString()).then(res => {
+                    axios.delete("/admin?aids=" + aids.toString()).then(res => {
                         if (res.data.code === 1) {
                             this.$message.success('批量删除成功！');
                             this.handleQuery();
@@ -331,7 +331,7 @@
             handleEditSubmit() {
                 // 提交修改操作
                 // 隐藏修改对话框
-                axios.post("/user/edit", this.editForm)
+                axios.post("/admin/edit", this.editForm)
                     .then(res => {
                         if (res.data.code === 1) {
                             this.$message.success('修改成功');
@@ -340,7 +340,7 @@
                             this.handleQuery();
 
                         } else {
-                            this.$message.error(res.data.msg || '添加书籍失败！');
+                            this.$message.error(res.data.msg || '读者修改失败！');
                         }
                     })
                 // console.log(this.editForm);

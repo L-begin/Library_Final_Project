@@ -50,39 +50,9 @@ public class UserInfoController {
         return Result.success(pageResult);
     }
 
-    /***
-     * 批量删除
-     * @param aids
-     * @return
-     */
-    @DeleteMapping
-    public Result delete (@RequestParam List<Long> aids){
-        log.info("根据id批量删除数据{}",aids);
-        boolean result = iUserInfoService.removeByIds(aids);
-        if (result){
-            return Result.success("删除成功");
-        }else {
-            return Result.error("删除失败");
-        }
-    }
 
-    /***
-     * 修改读者信息
-     * @param userInfo
-     * @return
-     */
-    @PostMapping("/edit")
-    public  Result update(@RequestBody UserInfo userInfo){
 
-        log.info("修改用户信息{}",userInfo);
-        //根据id来修改数据
-        boolean result = iUserInfoService.updateById(userInfo);
-        if (result){
-            return Result.success("修改成功");
-        }else {
-            return Result.error("修改失败");
-        }
-    }
+
 
     /**
      * 用户登录

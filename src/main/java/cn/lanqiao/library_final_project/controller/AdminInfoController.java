@@ -4,9 +4,11 @@ package cn.lanqiao.library_final_project.controller;
 import cn.lanqiao.library_final_project.constant.JwtClaimsConstant;
 import cn.lanqiao.library_final_project.context.BaseContext;
 import cn.lanqiao.library_final_project.module.pojo.AdminInfo;
+import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import cn.lanqiao.library_final_project.properties.JwtProperties;
 import cn.lanqiao.library_final_project.result.Result;
 import cn.lanqiao.library_final_project.service.IAdminInfoService;
+import cn.lanqiao.library_final_project.service.IUserInfoService;
 import cn.lanqiao.library_final_project.service.impl.AdminInfoServiceImpl;
 import cn.lanqiao.library_final_project.utils.JwtUtil;
 import jakarta.servlet.http.Cookie;
@@ -17,6 +19,7 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,6 +37,9 @@ public class AdminInfoController {
     private IAdminInfoService adminInfoService;
     @Autowired
     private JwtProperties jwtProperties;
+
+    @Autowired
+    private IUserInfoService iUserInfoService;
         @PostMapping( "/admin/login")
         public Result<AdminInfo> login(@RequestBody AdminInfo adminInfo, HttpServletResponse response) {
 //            数据加密
@@ -73,4 +79,40 @@ public class AdminInfoController {
             BaseContext.removeCurrentId();
             return Result.success();
         }
+
+
+    /***
+     * 读者批量删除
+     * @param aids
+     * @return
+     */
+    @DeleteMapping("/admin")
+    public Result delete (@RequestParam List<Long> aids){
+        log.info("根据id批量删除数据{}",aids);
+        boolean result = iUserInfoService.removeByIds(aids);
+        if (result){
+            return Result.success("删除成功");
+        }else {
+            return Result.error("删除失败");
+        }
+    }
+
+
+    /***
+     * 修改读者信息
+     * @param userInfo
+     * @return
+     */
+    @PostMapping("/admin/edit")
+    public  Result update(@RequestBody UserInfo userInfo){
+
+        log.info("修改用户信息{}",userInfo);
+        //根据id来修改数据
+        boolean result = iUserInfoService.updateById(userInfo);
+        if (result){
+            return Result.success("修改成功");
+        }else {
+            return Result.error("修改失败");
+        }
+    }
 }
