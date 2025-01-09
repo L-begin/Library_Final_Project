@@ -3,10 +3,13 @@ package cn.lanqiao.library_final_project.controller;
 import cn.lanqiao.library_final_project.module.dto.HisDto;
 import cn.lanqiao.library_final_project.module.pojo.BookHisInfo;
 import cn.lanqiao.library_final_project.module.pojo.BooksInfo;
+import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import cn.lanqiao.library_final_project.result.PageResult;
 import cn.lanqiao.library_final_project.result.Result;
 import cn.lanqiao.library_final_project.service.IBooksInfoService;
 import cn.lanqiao.library_final_project.service.IBookHisInfoService;
+import cn.lanqiao.library_final_project.service.IUserInfoService;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +38,9 @@ public class BookHisInfoController {
 
     @Autowired
     private IBookHisInfoService iBookHisInfoService;
+
+    @Autowired
+    private IUserInfoService iUserInfoService;
 
     @GetMapping("/his_admin")
     public Result<PageResult> page(HisDto hisDto) {
@@ -83,6 +89,14 @@ public class BookHisInfoController {
         // 设置借阅状态为借阅中（假设 1 表示借阅中）
         bookHisInfo.setStatus(1);
         booksInfoService.lambdaUpdate().eq(BooksInfo::getBid, bookHisInfo.getBid()).set(BooksInfo::getStatus, 1).update();
+        String username = bookHisInfo.getUsername();
+
+        // 使用 LambdaQueryWrapper 构建查询条件 设置借阅者账号和借阅者姓名
+        LambdaQueryWrapper<UserInfo> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UserInfo::getUsername, username);
+        UserInfo userInfo = iUserInfoService.getOne(wrapper);
+        bookHisInfo.setAid(userInfo.getAid());
+        bookHisInfo.setAdminName(userInfo.getName());
         // 保存借阅信息
         boolean save = iBookHisInfoService.save(bookHisInfo);
         if (save) {

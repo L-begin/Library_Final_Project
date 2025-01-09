@@ -225,12 +225,22 @@
                 // 计算结束时间
                 const endTime1 = new Date(currentTime.getTime() + totalMilliseconds).toISOString().split('T')[0];
                 currentTime = currentTime.toISOString().split('T')[0];
+
+                // 获取当前登录人的信息
+                let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+                let aid = userInfo.data.aid;
+                let username = userInfo.data.username;
+                let name = userInfo.data.name;
+
                 const Info = {
-                    bid:book.bid,
-                    card:book.card,
-                    bookName:book.name,
-                    beginTime:currentTime,
-                    endTime:endTime1
+                    bid: book.bid,
+                    card: book.card,
+                    bookName: book.name,
+                    beginTime: currentTime,
+                    endTime: endTime1,
+                    aid: aid,          // 添加当前登录人的aid
+                    username: username, // 添加当前登录人的username
+                    adminName: name     // 添加当前登录人的name
                 };
 
                 axios.post('/book_his', Info, {
@@ -241,15 +251,19 @@
                     .then(response => {
                         // 请求成功的处理逻辑
                         if (response.data.code === 1) {
-                            this.$message.success('借阅成功！')
-                            this.handleQuery()
+                            this.$message.success('借阅成功！');
+                            this.handleQuery();
                         } else {
-                            this.$message.error(response.data.msg || '操作失败')
+                            this.$message.error(response.data.msg || '操作失败');
                         }
                     })
-
-
+                    .catch(error => {
+                        // 请求失败的处理逻辑
+                        this.$message.error('请求失败，请重试');
+                        console.error(error);
+                    });
             }
+
         }
     })
 
