@@ -55,15 +55,24 @@ public class BookHisInfoController {
      * @param hid 要删除的记录的id
      * @return 表示删除结果的Result对象
      */
+    // 修改原有的删除方法
     @DeleteMapping("/{hid}")
-    public Result delete(Integer hid) {
+    public Result delete(@PathVariable Integer hid) {  // 添加 @PathVariable 注解
         log.info("根据id{}删除", hid);
-        // 先查询是否在借阅中 在借阅中 不能删除
-        BookHisInfo bookHisInfo = iBookHisInfoService.lambdaQuery().eq(BookHisInfo::getHid, hid).eq(BookHisInfo::getStatus, 1).one();
 
-        if (bookHisInfo!= null) {
-            return Result.error("该图书正在借阅中，不能删除");
+        // 先查询是否在借阅中 在借阅中 不能删除
+        BookHisInfo bookHisInfo = iBookHisInfoService.lambdaQuery()
+                .eq(BookHisInfo::getHid, hid)
+                .one();  // 先获取记录
+
+        if (bookHisInfo == null) {
+            return Result.error("记录不存在");
         }
+
+        if (bookHisInfo.getStatus() == 1) {
+            return Result.error("该书籍正在借阅中，不能删除");
+        }
+
         boolean result = iBookHisInfoService.removeById(hid);
         if (result) {
             return Result.success("删除成功");
