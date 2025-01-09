@@ -40,7 +40,7 @@
         <el-form :model="editForm" ref="editForm" label-width="80px" class="form-container" >
             <!-- 表单项 -->
             <el-form-item label="账号">
-                <el-input v-model="editForm.operatorName" disabled></el-input>
+                <el-input v-model="editForm.username" disabled></el-input>
             </el-form-item>
 
             <el-form-item label="旧密码">
@@ -97,7 +97,7 @@
         computed: {},
         created() {
             //this.user = JSON.parse(localStorage.getItem('userInfo')).username
-            this.editForm = JSON.parse(localStorage.getItem('userInfo')).data;
+            this.editForm = JSON.parse(localStorage.getItem('AdminInfo')).data;
             this.editForm.operatorPass = '';
             console.log(this.editForm);
 
