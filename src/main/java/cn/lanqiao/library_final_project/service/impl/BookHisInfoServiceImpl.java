@@ -37,8 +37,8 @@ public class BookHisInfoServiceImpl extends ServiceImpl<BookHisInfoMapper, BookH
     }
 
     @Override
-    public List<Map<String, Integer>> countByBookName() {
-        List<Map<String, Integer>> maps = bookHisInfoMapper.countByBookName();
+    public List<Map<String, Object>> countByBookName() {
+        List<Map<String, Object>> maps = bookHisInfoMapper.countByBookName();
         return maps;
     }
 

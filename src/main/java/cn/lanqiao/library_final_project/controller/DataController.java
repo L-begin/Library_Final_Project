@@ -31,7 +31,7 @@ public class DataController {
         int bookTypeCount = (int) bookTypeInfoService.count(); // 书籍类型
         int count = (int) booksInfoService.count(); // 书籍量
         int bookBorrowCount = (int) bookHisInfoService.count(); // 书籍借阅量
-        List<Map<String, Integer>> bookHisInfos = bookHisInfoService.countByBookName(); // 书籍借阅排名
+        List<Map<String, Object>> bookHisInfos = bookHisInfoService.countByBookName(); // 书籍借阅排名
         DataVO dataVO = new DataVO(userCount, bookTypeCount,count, bookBorrowCount, bookHisInfos);
         return Result.success(dataVO);
     }

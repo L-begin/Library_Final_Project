@@ -27,5 +27,5 @@ public interface IBookHisInfoService extends IService<BookHisInfo> {
 
     PageResult pagequery(HisDto hisDto);
 
-    List<Map<String, Integer>> countByBookName();
+    List<Map<String, Object>> countByBookName();
 }
