@@ -3,6 +3,7 @@ package cn.lanqiao.library_final_project.controller;
 
 import cn.lanqiao.library_final_project.constant.JwtClaimsConstant;
 import cn.lanqiao.library_final_project.context.BaseContext;
+import cn.lanqiao.library_final_project.module.dto.AdminDto;
 import cn.lanqiao.library_final_project.module.pojo.AdminInfo;
 import cn.lanqiao.library_final_project.module.pojo.UserInfo;
 import cn.lanqiao.library_final_project.properties.JwtProperties;
@@ -114,5 +115,9 @@ public class AdminInfoController {
         }else {
             return Result.error("修改失败");
         }
+    }
+    @PostMapping("/admin/Adminedit")
+    public Result<?> editAdminInfo(@RequestBody AdminDto adminDto) {
+        return adminInfoService.editAdminInfo(adminDto);
     }
 }

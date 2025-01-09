@@ -107,15 +107,8 @@
         methods: {
             // 处理修改提交
             handleEditSubmit() {
-                if (!this.oldPassword || !this.editForm.operatorName || !this.confirmPassword ) {
+                if (!this.oldPassword || !this.editForm.operatorPass || !this.confirmPassword) {
                     this.$message.error('请填写完整信息');
-                    return;
-                }
-
-                const  password = JSON.parse(localStorage.getItem('userInfoSimple')).operatorPass;
-                console.log(password);
-                if (this.oldPassword !== password) {
-                    this.$message.error('旧密码不正确');
                     return;
                 }
 
@@ -129,28 +122,26 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
+                    // 创建要提交的数据对象
+                    const submitData = {
+                        oldPassword: this.oldPassword,
+                        newPassword: this.editForm.operatorPass,
+                        confirmPassword: this.confirmPassword
+                    };
 
-
-                    axios.post("/admin/edit",this.editForm).then(res=>{
-                        if (res.data.code === 1){
+                    axios.post("/admin/Adminedit", submitData).then(res => {
+                        if (res.data.code === 1) {
                             this.$message.success('修改成功！');
-
                             localStorage.removeItem('userInfo');
                             localStorage.removeItem('userInfoSimple')
                             top.location.replace("login.html");
-
+                        } else {
+                            this.$message.error(res.data.msg || '修改失败！');
                         }
-                        else {
-                            this.$message.error(res.data.msg || '注册失败！');
-                        }
-
                     })
-
-
                 }).catch(() => {
                     // 如果用户点击了取消按钮，则不执行任何操作
                 });
-
             }
         }
     })
