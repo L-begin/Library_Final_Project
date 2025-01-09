@@ -36,12 +36,6 @@ public class BookHisInfoController {
     @Autowired
     private IBookHisInfoService iBookHisInfoService;
 
-    /**
-     * 基于HisDto的分页查询接口（原有的分页查询方法）
-     *
-     * @param hisDto 分页查询参数封装对象
-     * @return 包含分页结果的Result对象
-     */
     @GetMapping("/his_admin")
     public Result<PageResult> page(HisDto hisDto) {
         log.info("分页查询参数{}", hisDto);
@@ -49,21 +43,23 @@ public class BookHisInfoController {
         return Result.success(pageResult);
     }
 
-    /**
-     * 根据id删除图书借阅历史记录接口（原有的删除方法）
-     *
-     * @param hid 要删除的记录的id
-     * @return 表示删除结果的Result对象
-     */
     @DeleteMapping("/{hid}")
-    public Result delete(Integer hid) {
+    public Result delete(@PathVariable Integer hid) {  // 添加 @PathVariable 注解
         log.info("根据id{}删除", hid);
-        // 先查询是否在借阅中 在借阅中 不能删除
-        BookHisInfo bookHisInfo = iBookHisInfoService.lambdaQuery().eq(BookHisInfo::getHid, hid).eq(BookHisInfo::getStatus, 1).one();
 
-        if (bookHisInfo!= null) {
-            return Result.error("该图书正在借阅中，不能删除");
+        // 先查询是否在借阅中 在借阅中 不能删除
+        BookHisInfo bookHisInfo = iBookHisInfoService.lambdaQuery()
+                .eq(BookHisInfo::getHid, hid)
+                .one();  // 先获取记录
+
+        if (bookHisInfo == null) {
+            return Result.error("记录不存在");
         }
+
+        if (bookHisInfo.getStatus() == 1) {
+            return Result.error("该书籍正在借阅中，不能删除");
+        }
+
         boolean result = iBookHisInfoService.removeById(hid);
         if (result) {
             return Result.success("删除成功");
@@ -71,13 +67,6 @@ public class BookHisInfoController {
             return Result.error("删除失败");
         }
     }
-
-    /**
-     * 处理图书借阅请求接口（原有的借阅请求处理方法）
-     *
-     * @param bookHisInfo 包含图书借阅信息的对象
-     * @return 表示借阅结果的Result对象
-     */
     @PostMapping
     @Transactional
     public Result cyx(@RequestBody BookHisInfo bookHisInfo) {
@@ -102,7 +91,6 @@ public class BookHisInfoController {
             return Result.error("借阅失败");
         }
     }
-    // 在现有的 BookHisInfoController 类中添加新方法
 
     @GetMapping("/page")
     public Result<PageResult> pageQueryForUser(
