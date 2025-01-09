@@ -31,10 +31,6 @@ public interface BookHisInfoMapper extends BaseMapper<BookHisInfo> {
      */
 
     Page<BookHisInfo> pagequery(HisDto hisDto);
-
-
-    Page<BookHisInfo> Hispagequery(HisDto hisDto);
-    BookHisInfo selectById(Long id);
     @Select("select book_name,count(book_name) as count from book_his_info group by book_name order by count desc")
-    List<BookHisInfo> countByBookName();
+    List<Map<String,Integer>> countByBookName();
 }

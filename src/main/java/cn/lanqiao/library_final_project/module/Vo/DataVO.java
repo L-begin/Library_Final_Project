@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +21,5 @@ public class DataVO {
 //    书籍借阅量
     private int bookBorrowCount;
 //    书籍借阅排名
-    private List<BookHisInfo> bookBorrowRank;
+    private List<Map<String, Integer>> bookBorrowRank;
 }
