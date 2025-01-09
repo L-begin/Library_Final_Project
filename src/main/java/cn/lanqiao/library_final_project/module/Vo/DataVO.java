@@ -21,5 +21,5 @@ public class DataVO {
 //    书籍借阅量
     private int bookBorrowCount;
 //    书籍借阅排名
-    private List<Map<String, Integer>> bookBorrowRank;
+    private List<Map<String, Object>> bookBorrowRank;
 }
